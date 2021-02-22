@@ -15,7 +15,7 @@ public class PlayerType : MonoBehaviour
     }
     public void OnReceiveDmg(int dmg)
     {
-        StartCoroutine(GameAssets.Shake(transform, 0.1f, dmg * shakemag));
+        StartCoroutine(GameAssets.Shake(transform.GetChild(0), 0.1f, dmg * shakemag));
         if(nowsh>0)
         {
             DmgPopup.spawn(transform.position, Mathf.Min(dmg, nowsh), Color.cyan);

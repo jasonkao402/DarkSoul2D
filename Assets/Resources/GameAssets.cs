@@ -14,7 +14,7 @@ public class GameAssets : MonoBehaviour
     }
     public Transform dmgPopup;
     public static IEnumerator Shake (Transform tf, float t, float mag){
-		Vector3 oPos = tf.position;
+		Vector3 oPos = tf.localPosition;
 		float nowt = 0;
 		float progress = nowt/t;
 		while(nowt < t){
@@ -22,10 +22,6 @@ public class GameAssets : MonoBehaviour
 			nowt += Time.deltaTime;
 			yield return null;
 		}
-		tf.position = oPos;
-	}
-    public static void BundleSelfDestruct(GameObject tgt){
-		tgt.transform.DetachChildren();
-		Destroy(tgt);
+		tf.localPosition = oPos;
 	}
 }

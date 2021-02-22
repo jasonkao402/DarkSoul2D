@@ -5,6 +5,7 @@ using TMPro;
 public class DmgPopup : MonoBehaviour
 {
     TextMeshPro txt;
+    public float offset;
     private void Awake() {
         txt = gameObject.GetComponentInChildren<TextMeshPro>();
     }
@@ -15,6 +16,7 @@ public class DmgPopup : MonoBehaviour
     }
     void Init(int n, Color col)
     {
+        transform.position += (Vector3)Random.insideUnitCircle * offset;
         txt.SetText(n.ToString());
         txt.color = col;
         StartCoroutine(autoDestroy(1.5f));

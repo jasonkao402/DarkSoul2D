@@ -38,8 +38,11 @@ public class GunType : MonoBehaviour
 			for (i = 0; i < j; i++)
 			{
 				rot = Quaternion.Euler(0, 0, transform.localEulerAngles.z + Random.Range(-myGuns[inHand].spread, myGuns[inHand].spread));
-				Rigidbody2D r = Instantiate(myGuns[inHand].Bullet, transform.position + transform.right * myGuns[inHand].shootForce * 0.02f, rot).GetComponent<Rigidbody2D>();
-				r.velocity = r.transform.right * myGuns[inHand].shootForce;
+				Rigidbody2D[] rs = Instantiate(myGuns[inHand].Bullet, transform.position + transform.right * myGuns[inHand].shootForce * 0.02f, rot).GetComponentsInChildren<Rigidbody2D>();
+				foreach (Rigidbody2D r in rs)
+				{
+					r.velocity = r.transform.right * myGuns[inHand].shootForce;
+				}
 			}
 			auds.PlayOneShot(myGuns[inHand].sEff);
 			nowCD = myGuns[inHand].shotCD;
