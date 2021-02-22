@@ -39,11 +39,9 @@ public class PlayerType : MonoBehaviour
     }
     public IEnumerator HP_animation (Transform tgt, float t, int tgtval, int maxval)
     {
-        Debug.Log(tgt);
         if(tgt)
         {
             Vector3 tempS = tgt.localScale, tgtscale = new Vector3((float)tgtval / maxval, 1, 1);
-            Debug.Log(tempS);
             float n = 0;
             while(n < t){
                 tgt.localScale = Vector3.Lerp(tempS, tgtscale, n/t);

@@ -84,6 +84,7 @@ public class GunType : MonoBehaviour
 		}
     }
     void updateHUD(int i, int g){
+		if(ammo_In_inv &&　ammo_In_gun)
 		ammo_In_inv.text = "" + i;
 		ammo_In_gun.text = "" + g;
 	}

@@ -5,29 +5,50 @@ using UnityEngine.AI;
 
 public class aiRobotCtrl : MonoBehaviour
 {
-    public Transform tgt;
-    NavMeshAgent myNavMeshAgent;
+    public Transform tgt, visual, setastarget;
+    public float wanderRange, reactTime;
+    NavMeshAgent pfmaid;
     // Start is called before the first frame update
     void Start()
     {
-        myNavMeshAgent = GetComponent<NavMeshAgent>();
+        pfmaid = GetComponent<NavMeshAgent>();
+        if(setastarget) setastarget.SetParent(tgt, false);
+        pathWander();
+        //if(tgt) pfmaid.SetDestination(tgt.position);
+        pfmaid.updateRotation = false;
+        pfmaid.updateUpAxis = false;
     }
-
-    void Update()
+    private void FixedUpdate()
     {
-        if (Input.GetMouseButtonDown(0))
+        if(pfmaid.speed > 0.1f)
+        visual.right = pfmaid.velocity;
+    }
+    void SetDestinationToPosition()
+    {
+        if(!tgt)  pfmaid.SetDestination(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        else  pfmaid.SetDestination(tgt.position);
+    }
+    void pathWander()
+    {
+        pfmaid.SetDestination(transform.position + (Vector3)Random.insideUnitCircle * wanderRange);
+        Debug.DrawLine(transform.position, pfmaid.destination, Color.blue, 2f);
+    }
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if(other.CompareTag("AI_NewDest"))
         {
-            SetDestinationToMousePosition();
+            pfmaid.ResetPath();
+            pfmaid.SetDestination(other.transform.position + (Vector3)Random.insideUnitCircle * wanderRange);
+            Debug.DrawLine(transform.position, pfmaid.destination, Color.blue, 2f);
         }
     }
-
-    void SetDestinationToMousePosition()
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hit))
+		if(other.CompareTag("PlayerType"))
         {
-            myNavMeshAgent.SetDestination(hit.point);
-        }
-    }
+			Collider2D myCollider = other;
+            Debug.Log(myCollider.name);
+			//myCollider.GetComponent<MeshRenderer>().material = m;
+		}
+	}
 }

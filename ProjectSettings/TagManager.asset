@@ -9,6 +9,7 @@ TagManager:
   - PlayerType
   - SafeZone
   - GameArea
+  - AI_NewDest
   layers:
   - Default
   - TransparentFX
