@@ -19,7 +19,7 @@ public class BulletDmg : MonoBehaviour
 		}
 	}
     private void OnTriggerExit2D(Collider2D other) {
-        if (other.CompareTag("ClearZone")){
+        if (other.CompareTag("ClearZone") || other.CompareTag("GameArea")){
 			Destroy(gameObject);
 		}
     }

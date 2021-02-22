@@ -4,32 +4,41 @@ using UnityEngine;
 
 public class ringMaid : MonoBehaviour
 {
-    public GameObject safezone;
-    public float setcountdown;
-    public List<float> radi = new List<float>();
-    float nowcountdown;
-    int lenall, lennow = 0;
+    public Transform safezone, nextzone;
+    public float setcountdown, setshrinktime, maxrad;
+    public int allRounds;
+    float nowshrinktime, nowrad;
     void Start()
     {
-        lenall = radi.Count;
-        nowcountdown = setcountdown;
+        nowshrinktime = setshrinktime;
+        nowrad = maxrad;
+        safezone.localScale = Vector3.one * maxrad;
+        nextzone.localScale = Vector3.one * maxrad;
+        StartCoroutine(SetNewRing(safezone.position));
     }
-
-    // Update is called once per frame
-    void Update()
+    IEnumerator SetNewRing (Vector3 center)
     {
-        nowcountdown -= Time.deltaTime;
-        if(nowcountdown < 0)
+        Vector2 offset;
+        for(int i = 0 ; i < allRounds ; i++)
         {
-            lennow ++;
-            nowcountdown = setcountdown;
-        }
-    }
-    public IEnumerator ShrinkRing (Transform tf, float t, float sz){
-		Vector3 oPos = tf.localPosition;
-		float nowt = 0;
-		float progress = nowt/t;
-		tf.localPosition = oPos;
-        yield return null;
+            nowrad *= 0.5f;
+            offset = Random.insideUnitCircle * nowrad;
+            nextzone.localPosition += (Vector3)offset;
+            nextzone.localScale = Vector3.one * nowrad;
+            yield return new WaitForSeconds(setcountdown);
+            StartCoroutine(ShrinkRing(nextzone.localPosition, Vector3.one * nowrad));
+			yield return new WaitForSeconds(setshrinktime);
+		}
+	}
+    IEnumerator ShrinkRing (Vector3 center, Vector3 scale)
+    {
+        Vector3 tempS = safezone.localScale, tempP = safezone.localPosition;
+		float nowshrinktime = 0;
+		while(nowshrinktime < setshrinktime){
+			safezone.localScale = Vector3.Lerp(tempS, scale, nowshrinktime/setshrinktime);
+            safezone.localPosition = Vector3.Lerp(tempP, center, nowshrinktime/setshrinktime);
+			nowshrinktime += Time.deltaTime;
+			yield return null;
+		}
 	}
 }
