@@ -7,9 +7,11 @@ public class aiRobotCtrl : MonoBehaviour
 {
     public firearmObject firearmData;
     firearmData[] myGuns;
+    public AudioSource auds;
+    public PlayerType aiPlayer;
     public Transform tgt, visual, setastarget;
     public float wanderRange, reactTime;
-    float nowreactTime;
+    float nowreactTime, nowCD;
     NavMeshAgent pfmaid;
     // Start is called before the first frame update
     void Start()
@@ -62,10 +64,20 @@ public class aiRobotCtrl : MonoBehaviour
         if(other.CompareTag("PlayerType"))
         {
             nowreactTime -= Time.deltaTime;
+            //nowCD
             if(nowreactTime < 0)
             {
-                pfmaid.SetDestination(other.transform.position);
-                Debug.Log(other.name);
+                if(nowCD < 0)
+                {
+                    pfmaid.SetDestination(other.transform.position);
+                    firearmObject.spawnBullet(aiPlayer, myGuns, 0);
+                    Debug.Log(other.name);
+                    nowCD = myGuns[0].shotCD;
+                }
+                else
+                {
+                    nowCD -= Time.deltaTime;
+                }
             }
         }
     }

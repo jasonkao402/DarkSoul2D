@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerType : MonoBehaviour
 {
     // Start is called before the first frame update
+    public string PlayerName;
     public int maxhp, maxsh;
     public float shakemag, dmgtime;
     int nowhp, nowsh, calcDmg;
