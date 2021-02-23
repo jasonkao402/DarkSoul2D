@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7899940876692494095}
   - component: {fileID: 8906514542016966815}
+  - component: {fileID: 1546889619144893232}
   m_Layer: 0
   m_Name: GunRange
   m_TagString: Untagged
@@ -38,7 +39,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 423375317738540523}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -60,6 +61,22 @@ PolygonCollider2D:
       - {x: 16, y: 2}
       - {x: 16.5, y: 0}
       - {x: 16, y: -2}
+--- !u!58 &1546889619144893232
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 423375317738540523}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 16
 --- !u!1 &5528879207263399661
 GameObject:
   m_ObjectHideFlags: 0
@@ -341,7 +358,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 8
+  m_Speed: 10
   m_Acceleration: 20
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -365,11 +382,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 854bf4ea10c0d6240b35950ee27d22f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firearmData: {fileID: 11400000, guid: 220ddec98a812e0499449ccf3c5e9ecc, type: 2}
   tgt: {fileID: 0}
   visual: {fileID: 6782328650894105647}
   setastarget: {fileID: 7397094038354609591}
   wanderRange: 20
-  reactTime: 0
+  reactTime: 1
 --- !u!1 &6782328651097303726
 GameObject:
   m_ObjectHideFlags: 0

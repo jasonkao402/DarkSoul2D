@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class GunType : MonoBehaviour
 {
     public firearmObject firearmData;
-	private firearmData[] myGuns;
+	firearmData[] myGuns;
     public int ammoInv, changeTicks;
     float nowCD;
 	int nowMag = 0, inHand = 0, i, j;

@@ -2597,60 +2597,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9670767c718bd364d9a1a2dd191a3015, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myGuns:
-  - gunPos: {x: 0, y: 0, z: 0}
-    gunPreFab: {fileID: 0}
-    Bullet: {fileID: 1046963618959240, guid: e061a8d09bbd27848a018e62c42dfa69, type: 3}
-    sEff: {fileID: 8300000, guid: 5ccee945f8eedb54ab44c4eaef1101c8, type: 3}
-    oaEff: {fileID: 0}
-    rcEff: {fileID: 0}
-    magSize: 30
-    reloadTicks: 30
-    burstSize: 1
-    shootForce: 40
-    shotCD: 0.13
-    spread: 2.5
-    gunScale: 1
-  - gunPos: {x: 0, y: 0, z: 0}
-    gunPreFab: {fileID: 0}
-    Bullet: {fileID: 1046963618959240, guid: 9fcd883f7a622824cb5465003675c4d9, type: 3}
-    sEff: {fileID: 8300000, guid: 31a013f0f6c2c3f47b5fccd68434b26d, type: 3}
-    oaEff: {fileID: 0}
-    rcEff: {fileID: 0}
-    magSize: 6
-    reloadTicks: 30
-    burstSize: 1
-    shootForce: 80
-    shotCD: 0.8
-    spread: 0
-    gunScale: 1
-  - gunPos: {x: 0, y: 0, z: 0}
-    gunPreFab: {fileID: 0}
-    Bullet: {fileID: 1046963618959240, guid: f39eada435fc082478636fe21d3dd7aa, type: 3}
-    sEff: {fileID: 8300000, guid: 9855ea354f73efc4aa4bdce54c066b25, type: 3}
-    oaEff: {fileID: 0}
-    rcEff: {fileID: 0}
-    magSize: 30
-    reloadTicks: 30
-    burstSize: 1
-    shootForce: 50
-    shotCD: 0.08
-    spread: 5
-    gunScale: 1
-  - gunPos: {x: 0, y: 0, z: 0}
-    gunPreFab: {fileID: 0}
-    Bullet: {fileID: 4646495062618217026, guid: e79cc0a398de49045b074ebd33d63631,
-      type: 3}
-    sEff: {fileID: 8300000, guid: 3d8b47f595322e544bc7846221923cd7, type: 3}
-    oaEff: {fileID: 0}
-    rcEff: {fileID: 0}
-    magSize: 2
-    reloadTicks: 30
-    burstSize: 1
-    shootForce: 30
-    shotCD: 0.333
-    spread: 0
-    gunScale: 1
+  firearmData: {fileID: 11400000, guid: 220ddec98a812e0499449ccf3c5e9ecc, type: 2}
   ammoInv: 999
   changeTicks: 60
   ammo_In_inv: {fileID: 44404019}

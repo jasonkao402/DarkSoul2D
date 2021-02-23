@@ -24,7 +24,7 @@ public class aiRobotCtrl : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if(pfmaid.speed > 0.333f)
+        if(pfmaid.velocity.sqrMagnitude > 1f)
         visual.right = pfmaid.velocity;
     }
     void SetDestinationToPosition()
@@ -59,10 +59,14 @@ public class aiRobotCtrl : MonoBehaviour
 	}
     */
     private void OnTriggerStay2D(Collider2D other) {
-        nowreactTime -= Time.deltaTime;
-        if(nowreactTime < 0)
+        if(other.CompareTag("PlayerType"))
         {
-
+            nowreactTime -= Time.deltaTime;
+            if(nowreactTime < 0)
+            {
+                pfmaid.SetDestination(other.transform.position);
+                Debug.Log(other.name);
+            }
         }
     }
 }
