@@ -51,4 +51,7 @@ public class aiRobotCtrl : MonoBehaviour
 			//myCollider.GetComponent<MeshRenderer>().material = m;
 		}
 	}
+    private void OnTriggerStay2D(Collider2D other) {
+        
+    }
 }
