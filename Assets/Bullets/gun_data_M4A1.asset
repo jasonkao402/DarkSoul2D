@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29c9d98b8beb0014fb3635055265e80b, type: 3}
+  m_Name: gun_data_M4A1
+  m_EditorClassIdentifier: 
+  gun_data:
+  - gunPos: {x: 0, y: 0, z: 0}
+    gunPreFab: {fileID: 0}
+    Bullet: {fileID: 1046963618959240, guid: e061a8d09bbd27848a018e62c42dfa69, type: 3}
+    sEff: {fileID: 8300000, guid: 5ccee945f8eedb54ab44c4eaef1101c8, type: 3}
+    oaEff: {fileID: 0}
+    rcEff: {fileID: 0}
+    magSize: 30
+    reloadTicks: 30
+    burstSize: 1
+    shootForce: 40
+    shotCD: 0.13
+    spread: 2.5
+  - gunPos: {x: 0, y: 0, z: 0}
+    gunPreFab: {fileID: 0}
+    Bullet: {fileID: 1046963618959240, guid: 9fcd883f7a622824cb5465003675c4d9, type: 3}
+    sEff: {fileID: 8300000, guid: 31a013f0f6c2c3f47b5fccd68434b26d, type: 3}
+    oaEff: {fileID: 0}
+    rcEff: {fileID: 0}
+    magSize: 6
+    reloadTicks: 30
+    burstSize: 1
+    shootForce: 87
+    shotCD: 0.8
+    spread: 0
+  - gunPos: {x: 0, y: 0, z: 0}
+    gunPreFab: {fileID: 0}
+    Bullet: {fileID: 1046963618959240, guid: f39eada435fc082478636fe21d3dd7aa, type: 3}
+    sEff: {fileID: 8300000, guid: 9855ea354f73efc4aa4bdce54c066b25, type: 3}
+    oaEff: {fileID: 0}
+    rcEff: {fileID: 0}
+    magSize: 30
+    reloadTicks: 30
+    burstSize: 1
+    shootForce: 50
+    shotCD: 0.08
+    spread: 5
+  - gunPos: {x: 0, y: 0, z: 0}
+    gunPreFab: {fileID: 0}
+    Bullet: {fileID: 4646495062618217026, guid: e79cc0a398de49045b074ebd33d63631,
+      type: 3}
+    sEff: {fileID: 8300000, guid: 3d8b47f595322e544bc7846221923cd7, type: 3}
+    oaEff: {fileID: 0}
+    rcEff: {fileID: 0}
+    magSize: 2
+    reloadTicks: 30
+    burstSize: 1
+    shootForce: 30
+    shotCD: 0.333
+    spread: 0
+  - gunPos: {x: 0, y: 0, z: 0}
+    gunPreFab: {fileID: 0}
+    Bullet: {fileID: 1642732865018582347, guid: 1a323577a3781f1468a0a294b7cc2469,
+      type: 3}
+    sEff: {fileID: 8300000, guid: 6ea5b403f0a8adf46bada6b3c5da7d97, type: 3}
+    oaEff: {fileID: 0}
+    rcEff: {fileID: 0}
+    magSize: 1
+    reloadTicks: 60
+    burstSize: 1
+    shootForce: 40
+    shotCD: 1
+    spread: 0

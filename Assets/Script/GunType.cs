@@ -3,17 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[System.Serializable]
-public struct Guninfo{
-	public Vector3 gunPos;
-	public GameObject gunPreFab, Bullet;
-	public AudioClip sEff, oaEff, rcEff;
-	public int magSize, reloadTicks, burstSize;
-	public float shootForce, shotCD, spread, gunScale;
-}
 public class GunType : MonoBehaviour
 {
-    public Guninfo[] myGuns;
+    public firearmObject firearmData;
+	private firearmData[] myGuns;
     public int ammoInv, changeTicks;
     float nowCD;
 	int nowMag = 0, inHand = 0, i, j;
@@ -22,6 +15,7 @@ public class GunType : MonoBehaviour
     public Text ammo_In_inv, ammo_In_gun;
     void Start()
     {
+		myGuns = firearmData.gun_data;
 		auds = GetComponentInChildren<AudioSource>();
 		j = myGuns[inHand].burstSize;
         reloadComplete();
@@ -38,7 +32,7 @@ public class GunType : MonoBehaviour
 			for (i = 0; i < j; i++)
 			{
 				rot = Quaternion.Euler(0, 0, transform.localEulerAngles.z + Random.Range(-myGuns[inHand].spread, myGuns[inHand].spread));
-				Rigidbody2D[] rs = Instantiate(myGuns[inHand].Bullet, transform.position + transform.right * myGuns[inHand].shootForce * 0.02f, rot).GetComponentsInChildren<Rigidbody2D>();
+				Rigidbody2D[] rs = Instantiate(myGuns[inHand].Bullet, transform.position + transform.right * myGuns[inHand].shootForce * 0.05f, rot).GetComponentsInChildren<Rigidbody2D>();
 				foreach (Rigidbody2D r in rs)
 				{
 					r.velocity = r.transform.right * myGuns[inHand].shootForce;
@@ -49,7 +43,7 @@ public class GunType : MonoBehaviour
 			nowMag --;
 			updateHUD(ammoInv,nowMag);
 		}
-		else if(Input.GetAxisRaw("Mouse ScrollWheel") < 0)
+		else if(Input.GetAxisRaw("Mouse ScrollWheel") > 0)
 		{
 			if(inHand == 0)
 				inHand = myGuns.Length-1;
@@ -61,7 +55,7 @@ public class GunType : MonoBehaviour
 			j = myGuns[inHand].burstSize;
 			reloadComplete();
 		}
-		else if(Input.GetAxisRaw("Mouse ScrollWheel") > 0)
+		else if(Input.GetAxisRaw("Mouse ScrollWheel") < 0)
 		{
 			if(inHand == myGuns.Length-1)
 				inHand = 0;

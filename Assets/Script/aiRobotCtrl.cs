@@ -7,6 +7,7 @@ public class aiRobotCtrl : MonoBehaviour
 {
     public Transform tgt, visual, setastarget;
     public float wanderRange, reactTime;
+    float nowreactTime;
     NavMeshAgent pfmaid;
     // Start is called before the first frame update
     void Start()
@@ -20,7 +21,7 @@ public class aiRobotCtrl : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if(pfmaid.speed > 0.1f)
+        if(pfmaid.speed > 0.333f)
         visual.right = pfmaid.velocity;
     }
     void SetDestinationToPosition()
@@ -37,11 +38,13 @@ public class aiRobotCtrl : MonoBehaviour
     {
         if(other.CompareTag("AI_NewDest"))
         {
+            nowreactTime = reactTime;
             pfmaid.ResetPath();
             pfmaid.SetDestination(other.transform.position + (Vector3)Random.insideUnitCircle * wanderRange);
             Debug.DrawLine(transform.position, pfmaid.destination, Color.blue, 2f);
         }
     }
+    /*
     private void OnTriggerEnter2D(Collider2D other)
     {
 		if(other.CompareTag("PlayerType"))
@@ -51,7 +54,8 @@ public class aiRobotCtrl : MonoBehaviour
 			//myCollider.GetComponent<MeshRenderer>().material = m;
 		}
 	}
+    */
     private void OnTriggerStay2D(Collider2D other) {
-        
+        nowreactTime -= Time.deltatime;
     }
 }
