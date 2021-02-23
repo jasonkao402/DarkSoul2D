@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class aiRobotCtrl : MonoBehaviour
 {
+    public firearmObject firearmData;
+    firearmData[] myGuns;
     public Transform tgt, visual, setastarget;
     public float wanderRange, reactTime;
     float nowreactTime;
@@ -12,6 +14,7 @@ public class aiRobotCtrl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        myGuns = firearmData.gun_data;
         pfmaid = GetComponent<NavMeshAgent>();
         if(setastarget) setastarget.SetParent(tgt, false);
         pathWander();
@@ -56,6 +59,10 @@ public class aiRobotCtrl : MonoBehaviour
 	}
     */
     private void OnTriggerStay2D(Collider2D other) {
-        nowreactTime -= Time.deltatime;
+        nowreactTime -= Time.deltaTime;
+        if(nowreactTime < 0)
+        {
+
+        }
     }
 }
