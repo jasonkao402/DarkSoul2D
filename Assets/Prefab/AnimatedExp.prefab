@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 6955543294501183827}
   - component: {fileID: 6955543294501183826}
   - component: {fileID: 6955543294501183829}
+  - component: {fileID: 7045194680660167141}
+  - component: {fileID: 4656374802081060140}
   m_Layer: 0
   m_Name: AnimatedExp
   m_TagString: Untagged
@@ -4813,6 +4815,38 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!58 &7045194680660167141
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6955543294501183828}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 3
+--- !u!114 &4656374802081060140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6955543294501183828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a10a3787c8acc804f91ac91162b793c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  setDamage: 60
+  timer: 1
+  isDetonate: 0
+  effect: {fileID: 0}
 --- !u!1001 &8855616115248063135
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4884,6 +4918,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Explosion
+      objectReference: {fileID: 0}
+    - target: {fileID: 8680039006097579054, guid: 562ee1fb67b330641be10239b624b7ce,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 562ee1fb67b330641be10239b624b7ce, type: 3}

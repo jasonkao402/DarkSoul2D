@@ -24,4 +24,14 @@ public class GameAssets : MonoBehaviour
 		}
 		tf.localPosition = oPos;
 	}
+    public static IEnumerator autoDestroy(GameObject tgt, float t)
+    {
+        yield return new WaitForSeconds(t);
+        Destroy(tgt);
+    }
+    public static IEnumerator autoDestroy(Transform tgt, float t)
+    {
+        yield return new WaitForSeconds(t);
+        Destroy(tgt);
+    }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerCtrl : MonoBehaviour
 {
-    public float speed;
+    public float accel, maxSpeed;
     float angle;
     Rigidbody2D rb;
     Vector3 dir;
@@ -16,7 +16,8 @@ public class PlayerCtrl : MonoBehaviour
     }
     void FixedUpdate()
     {
-        rb.MovePosition(transform.position + (dir * speed));
+        if(rb.velocity.sqrMagnitude < maxSpeed)
+            rb.AddForce(dir * accel);
         transform.right = target.position - transform.position;
         Debug.DrawLine(transform.position, target.position, Color.red);
     }

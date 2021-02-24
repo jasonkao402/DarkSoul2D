@@ -12,14 +12,14 @@ public class DmgPopup : MonoBehaviour
     void Init(int n)
     {
         txt.SetText(n.ToString());
-        StartCoroutine(autoDestroy(1.5f));
+        StartCoroutine(GameAssets.autoDestroy(gameObject,1.5f));
     }
     void Init(int n, Color col)
     {
         transform.position += (Vector3)Random.insideUnitCircle * offset;
         txt.SetText(n.ToString());
         txt.color = col;
-        StartCoroutine(autoDestroy(1.5f));
+        StartCoroutine(GameAssets.autoDestroy(gameObject,1.5f));
     }
     public static DmgPopup spawn(Vector3 pos, int dmg)
     {
@@ -32,10 +32,5 @@ public class DmgPopup : MonoBehaviour
         DmgPopup dmgPopup = Instantiate(GameAssets.i.dmgPopup, pos, Quaternion.identity).GetComponentInChildren<DmgPopup>();
         dmgPopup.Init(dmg, col);
         return dmgPopup;
-    }  
-    IEnumerator autoDestroy(float t)
-    {
-        yield return new WaitForSeconds(t);
-        Destroy(gameObject);
     }
 }

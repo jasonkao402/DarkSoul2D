@@ -9,15 +9,16 @@ public class GunType : MonoBehaviour
 	firearmData[] myGuns;
     public int ammoInv, changeTicks;
     float nowCD;
-	int nowMag = 0, inHand = 0, i, j;
+	int nowMag = 0, inHand = 0;
+	PlayerType userPlayer;
 	AudioSource auds;
 	Quaternion rot;
     public Text ammo_In_inv, ammo_In_gun;
     void Start()
     {
+		userPlayer = GetComponent<PlayerType>();
 		myGuns = firearmData.gun_data;
 		auds = GetComponentInChildren<AudioSource>();
-		j = myGuns[inHand].burstSize;
         reloadComplete();
     }
 
@@ -29,15 +30,7 @@ public class GunType : MonoBehaviour
 		//}
         if(Input.GetKey(KeyCode.Mouse0) && nowMag >= 1 && nowCD <= 0f)
 		{
-			for (i = 0; i < j; i++)
-			{
-				rot = Quaternion.Euler(0, 0, transform.localEulerAngles.z + Random.Range(-myGuns[inHand].spread, myGuns[inHand].spread));
-				Rigidbody2D[] rs = Instantiate(myGuns[inHand].Bullet, transform.position + transform.right * myGuns[inHand].shootForce * 0.05f, rot).GetComponentsInChildren<Rigidbody2D>();
-				foreach (Rigidbody2D r in rs)
-				{
-					r.velocity = r.transform.right * myGuns[inHand].shootForce;
-				}
-			}
+			firearmObject.spawnBullet(userPlayer, myGuns[inHand]);
 			auds.PlayOneShot(myGuns[inHand].sEff);
 			nowCD = myGuns[inHand].shotCD;
 			nowMag --;
@@ -52,7 +45,6 @@ public class GunType : MonoBehaviour
 			//StartCoroutine(sc.changeFireArm(changeTicks, inHand));
 			ammoInv += nowMag;
 			nowMag = 0;
-			j = myGuns[inHand].burstSize;
 			reloadComplete();
 		}
 		else if(Input.GetAxisRaw("Mouse ScrollWheel") < 0)
@@ -64,7 +56,6 @@ public class GunType : MonoBehaviour
 			//StartCoroutine(sc.changeFireArm(changeTicks, inHand));
 			ammoInv += nowMag;
 			nowMag = 0;
-			j = myGuns[inHand].burstSize;
 			reloadComplete();
 		}
         else if(Input.GetKeyDown(KeyCode.R))

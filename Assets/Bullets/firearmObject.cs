@@ -17,16 +17,17 @@ public class firearmObject : ScriptableObject
 {
   	public firearmData[] gun_data;
 
-	public static void spawnBullet(PlayerType fromPlayer, firearmData heldGuns, int inHand)
+	public static void spawnBullet(PlayerType fromPlayer, firearmData heldGun)
 	{
-		int i = 0, j = heldGuns.burstSize;
+		Quaternion rot;
+		int i = 0, j = heldGun.burstSize;
 		for (; i < j; i++)
 		{
-			rot = Quaternion.Euler(0, 0, fromPlayer.transform.localEulerAngles.z + Random.Range(-heldGuns[inHand].spread, heldGuns[inHand].spread));
-			Rigidbody2D[] rs = Instantiate(heldGuns[inHand].Bullet, fromPlayer.transform.position, rot).GetComponentsInChildren<Rigidbody2D>();
+			rot = Quaternion.Euler(0, 0, Random.Range(-heldGun.spread, heldGun.spread));
+			Rigidbody2D[] rs = Instantiate(heldGun.Bullet, fromPlayer.transform).GetComponentsInChildren<Rigidbody2D>();
 			foreach (Rigidbody2D r in rs)
 			{
-				r.velocity = r.transform.right * heldGuns[inHand].shootForce;
+				r.velocity = rot * r.transform.right * heldGun.shootForce;
 			}
 		}
 	}
