@@ -30,7 +30,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6782328650894105647}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!60 &8906514542016966815
 PolygonCollider2D:
@@ -106,7 +106,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6782328650894105647}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &2636747102291059883
 CircleCollider2D:
@@ -287,9 +287,9 @@ Transform:
   - {fileID: 6782328651503780114}
   - {fileID: 6782328650186181430}
   - {fileID: 6782328651107455104}
-  - {fileID: 6782328651812582747}
   - {fileID: 7397094038354609591}
   - {fileID: 7899940876692494095}
+  - {fileID: 6782328651812582747}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -388,6 +388,7 @@ MonoBehaviour:
   tgt: {fileID: 0}
   visual: {fileID: 6782328650894105647}
   setastarget: {fileID: 7397094038354609591}
+  nextRing: {fileID: 0}
   wanderRange: 20
   reactTime: 99
   debugHolding: 0
@@ -758,7 +759,7 @@ PrefabInstance:
     - target: {fileID: 4470843264719381186, guid: e3b5fa497d60d7c4b90d5519da52e13f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4470843264719381186, guid: e3b5fa497d60d7c4b90d5519da52e13f,
         type: 3}

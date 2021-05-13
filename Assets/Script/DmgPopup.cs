@@ -12,14 +12,14 @@ public class DmgPopup : MonoBehaviour
     void Init(int n)
     {
         txt.SetText(n.ToString());
-        StartCoroutine(GameAssets.autoDestroy(gameObject,1.5f));
+        Destroy(gameObject, 1.5f);
     }
     void Init(int n, Color col)
     {
         transform.position += (Vector3)Random.insideUnitCircle * offset;
         txt.SetText(n.ToString());
         txt.color = col;
-        StartCoroutine(GameAssets.autoDestroy(gameObject,1.5f));
+        Destroy(gameObject, 1.5f);
     }
     public static DmgPopup spawn(Vector3 pos, int dmg)
     {

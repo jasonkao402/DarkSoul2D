@@ -12,7 +12,7 @@ public class BulletDmg : MonoBehaviour
     private void Start() {
         dmgsource = transform.GetComponentInParent<PlayerType>();
         transform.SetParent(null);
-        StartCoroutine(GameAssets.autoDestroy(gameObject, timer));
+        Destroy(gameObject, timer);
     }
     void Detonate()
     {
