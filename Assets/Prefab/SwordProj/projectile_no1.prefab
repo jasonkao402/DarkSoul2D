@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 4899434306146198338}
   - component: {fileID: 5004561228550228824}
   m_Layer: 0
-  m_Name: projectile
+  m_Name: projectile_no1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -177,5 +177,6 @@ MonoBehaviour:
   setDamage: 60
   timer: 3
   vel: -20
+  lockAfter: -1
   acc: 1
   effect: {fileID: 0}
