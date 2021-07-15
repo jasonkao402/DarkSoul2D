@@ -516,17 +516,32 @@ MonoBehaviour:
   - ID: swordImg
     blueprint: {fileID: 2291763347179699088, guid: 2e7c5e8793f4dfc43b1aa090833a44bd,
       type: 3}
-    amt: 100
+    amt: 150
     allowGrow: 0
   - ID: swordProj_1
     blueprint: {fileID: 4899434306146198342, guid: d7dbf183af8f125438e6e752ab90290c,
       type: 3}
-    amt: 100
+    amt: 90
     allowGrow: 0
   - ID: swordProj_2
-    blueprint: {fileID: 4899434306146198342, guid: d7dbf183af8f125438e6e752ab90290c,
+    blueprint: {fileID: 4810695910545669292, guid: f2131f00359cb5f4c987a89b011210a1,
       type: 3}
-    amt: 100
+    amt: 60
+    allowGrow: 0
+  - ID: swordProj_3
+    blueprint: {fileID: 7646891045561681194, guid: 6955f5006dc4c824ead45bc1d0d73f33,
+      type: 3}
+    amt: 40
+    allowGrow: 0
+  - ID: hint
+    blueprint: {fileID: 6514986088190840951, guid: d92eeca25f7367d459c4462007148450,
+      type: 3}
+    amt: 150
+    allowGrow: 0
+  - ID: swordImg_2
+    blueprint: {fileID: 8247542183414347246, guid: e7262f7e064360d4aa6c4d24131bcacf,
+      type: 3}
+    amt: 60
     allowGrow: 0
 --- !u!4 &629587099
 Transform:
@@ -540,7 +555,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &744700811
 GameObject:
@@ -1049,8 +1064,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 498507291}
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_Father: {fileID: 2111345177}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1128,7 +1143,7 @@ Transform:
   - {fileID: 1435917572}
   - {fileID: 744700812}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1355988602
 MonoBehaviour:
@@ -1145,9 +1160,9 @@ MonoBehaviour:
   dist: 0.75
   turn: 1000
   topspeed: 50
-  proj_maxCD: 0.2
-  state_maxCD: 2
-  tgt: {fileID: 246532966}
+  proj_maxCD: 0.5
+  state_maxCD: 1
+  player: {fileID: 246532966}
 --- !u!1 &1435917571
 GameObject:
   m_ObjectHideFlags: 0
@@ -1516,6 +1531,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 136530976}
+  - {fileID: 1319406542}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

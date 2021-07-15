@@ -6,7 +6,8 @@ public class BulletPoolver : MonoBehaviour
 {
     public int setDamage;
     public float timer, vel;
-    public float lockAfter = -1, acc = 1;
+    public float lockAfter = -1, acc = 1, lockvel;
+    public bool isLock;
     Vector2 accv;
     public GameObject effect;
     AftImgPool pooli;
@@ -37,7 +38,8 @@ public class BulletPoolver : MonoBehaviour
     }
     void lockOn()
     {
-        transform.right = bossAI.playertgt.position - transform.position;
-        setSpeed();
+        if(isLock) transform.right =  bossAI.playertgt.position - transform.position;
+        accv = transform.right;
+        rb.velocity = accv * lockvel;
     }
 }
