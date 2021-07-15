@@ -11,6 +11,7 @@ public class bossAI : MonoBehaviour
         QuaDash,
         StarFlash,
         DiagFall_R,
+        DiagFall_L,
         OrbitCannon,
         Idle,
     }
@@ -87,20 +88,34 @@ public class bossAI : MonoBehaviour
                 destPos = playertgt.position + qtmp * vtmp;
                 transform.right = destPos - transform.position;
             }
-            transform.position = Vector3.Lerp(transform.position, destPos, 0.15f);
+            transform.position = Vector3.Lerp(transform.position, destPos, 0.3f);
             AfterImage();
             break;
 
         case AtkPattern.DiagFall_R:
             if((transform.position - destPos).sqrMagnitude < 0.1f)
             {
-                pooli.TakePool("swordProj_1", transform.position, Quaternion.Euler(0, 0, -90));
-                pooli.TakePool("hint", transform.position, Quaternion.Euler(0, 0, -90));
+                pooli.TakePool("swordProj_1", transform.position, qtmp);
+                pooli.TakePool("hint", transform.position, qtmp);
+                vtmp += new Vector3(3, 0, 0);
                 destPos = playertgt.position + vtmp;
             }
-            transform.position = Vector3.Lerp(transform.position, destPos, 0.2f);
+            transform.position = Vector3.Lerp(transform.position, destPos, 0.4f);
             break;
 
+        case AtkPattern.DiagFall_L:
+            if((transform.position - destPos).sqrMagnitude < 0.1f)
+            {
+                pooli.TakePool("swordProj_1", transform.position, qtmp);
+                pooli.TakePool("hint", transform.position, qtmp);
+                vtmp += new Vector3(-3, 0, 0);
+                destPos = playertgt.position + vtmp;
+            }
+            transform.position = Vector3.Lerp(transform.position, destPos, 0.4f);
+            break;
+
+        case AtkPattern.OrbitCannon:
+            break;
         default:
             break;
         }
@@ -133,14 +148,30 @@ public class bossAI : MonoBehaviour
             break;
 
         case AtkPattern.StarFlash:
-            destPos = vtmp = new Vector3(20, 0, 0);
+            vtmp = new Vector3(20, 0, 0);
+            destPos = playertgt.position + vtmp;
             qtmp = Quaternion.Euler(0, 0, 0);
-            state_nowCD = state_maxCD * 4; 
+            state_nowCD = state_maxCD * 3; 
             break;
+
         case AtkPattern.DiagFall_R:
-            destPos = vtmp = Vector3.right;
+            qtmp = Quaternion.Euler(0, 0, -90);
+            transform.rotation = qtmp;
+
+            vtmp = new Vector3(-10, 16, 0);
+            destPos = playertgt.position + vtmp;
             state_nowCD = 1;
             break;
+
+        case AtkPattern.DiagFall_L:
+            qtmp = Quaternion.Euler(0, 0, -90);
+            transform.rotation = qtmp;
+
+            vtmp = new Vector3(10, 16, 0);
+            destPos = playertgt.position + vtmp;
+            state_nowCD = 1;
+            break;
+
         default:
             break;
         }

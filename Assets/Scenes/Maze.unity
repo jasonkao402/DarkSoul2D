@@ -541,7 +541,7 @@ MonoBehaviour:
   - ID: swordImg_2
     blueprint: {fileID: 8247542183414347246, guid: e7262f7e064360d4aa6c4d24131bcacf,
       type: 3}
-    amt: 60
+    amt: 120
     allowGrow: 0
 --- !u!4 &629587099
 Transform:
@@ -1161,7 +1161,7 @@ MonoBehaviour:
   turn: 1000
   topspeed: 50
   proj_maxCD: 0.5
-  state_maxCD: 1
+  state_maxCD: 2
   player: {fileID: 246532966}
 --- !u!1 &1435917571
 GameObject:
