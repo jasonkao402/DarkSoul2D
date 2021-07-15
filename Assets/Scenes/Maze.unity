@@ -516,7 +516,7 @@ MonoBehaviour:
   - ID: swordImg
     blueprint: {fileID: 2291763347179699088, guid: 2e7c5e8793f4dfc43b1aa090833a44bd,
       type: 3}
-    amt: 150
+    amt: 200
     allowGrow: 0
   - ID: swordProj_1
     blueprint: {fileID: 4899434306146198342, guid: d7dbf183af8f125438e6e752ab90290c,
@@ -542,6 +542,11 @@ MonoBehaviour:
     blueprint: {fileID: 8247542183414347246, guid: e7262f7e064360d4aa6c4d24131bcacf,
       type: 3}
     amt: 120
+    allowGrow: 0
+  - ID: swordProj_4
+    blueprint: {fileID: 7431430767870943750, guid: eaaa68ed8be181c4aa4b3efd8cc94cec,
+      type: 3}
+    amt: 360
     allowGrow: 0
 --- !u!4 &629587099
 Transform:
@@ -1161,7 +1166,7 @@ MonoBehaviour:
   turn: 1000
   topspeed: 50
   proj_maxCD: 0.5
-  state_maxCD: 2
+  state_maxCD: 1.5
   player: {fileID: 246532966}
 --- !u!1 &1435917571
 GameObject:

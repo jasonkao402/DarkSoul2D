@@ -115,6 +115,16 @@ public class bossAI : MonoBehaviour
             break;
 
         case AtkPattern.OrbitCannon:
+            if((transform.position - destPos).sqrMagnitude < 0.5f)
+            {
+                transform.right = playertgt.position - transform.position;
+                pooli.TakePool("swordProj_4", transform.position, transform.rotation);
+                pooli.TakePool("hint", transform.position, transform.rotation);
+
+                qtmp *= Quaternion.Euler(0, 0, -8);
+                destPos = playertgt.position + qtmp * vtmp;
+            }
+            transform.position = Vector3.Lerp(transform.position, destPos, 0.25f);
             break;
         default:
             break;
@@ -151,7 +161,6 @@ public class bossAI : MonoBehaviour
             vtmp = new Vector3(20, 0, 0);
             destPos = playertgt.position + vtmp;
             qtmp = Quaternion.Euler(0, 0, 0);
-            state_nowCD = state_maxCD * 3; 
             break;
 
         case AtkPattern.DiagFall_R:
@@ -172,6 +181,15 @@ public class bossAI : MonoBehaviour
             state_nowCD = 1;
             break;
 
+        case AtkPattern.OrbitCannon:
+            qtmp = Quaternion.Euler(0, 0, 0);
+            transform.rotation = qtmp;
+
+            vtmp = new Vector3(12, 0, 0);
+            destPos = playertgt.position + vtmp;
+            transform.right = playertgt.position - transform.position;
+            state_nowCD = state_maxCD * 3;
+            break;
         default:
             break;
         }
