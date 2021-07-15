@@ -7,6 +7,7 @@ public class AftImgPool : MonoBehaviour{
         public string ID;
         public GameObject blueprint;
         public int amt;
+        public bool allowGrow;
     }
     public List<Pool> pools;
     public Dictionary<string, Queue<GameObject>> poolDict = new Dictionary<string, Queue<GameObject>>();
@@ -32,6 +33,11 @@ public class AftImgPool : MonoBehaviour{
             Debug.LogWarning("ID : " + ID + " not found");
             return null;
         }
+        else if(poolDict[ID].Count == 0)
+        {
+            Debug.LogWarning("ID : " + ID + " not available");
+            return null;
+        }
         GameObject obj = poolDict[ID].Dequeue();
         obj.SetActive(true);
         obj.transform.position = p;
@@ -39,8 +45,5 @@ public class AftImgPool : MonoBehaviour{
 
         poolDict[ID].Enqueue(obj);
         return obj;
-    }
-    public void retPool(GameObject obj){
-
     }
 }
