@@ -8,7 +8,6 @@ public class AftImgCtrl : MonoBehaviour
     Color initc, fadec;
     public float fadeMax;
     float fadeNow;
-    public string poolID;
     AftImgPool pooli;
     private void Awake() {
         sr = GetComponentInChildren<SpriteRenderer>();

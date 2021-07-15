@@ -310,7 +310,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   accel: 2500
   maxSpeed: 300
-  boost: 40000
+  boost: 50000
   boost_maxCD: 1
   target: {fileID: 246532966}
 --- !u!4 &246532966
@@ -513,10 +513,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pools:
-  - ID: sword
+  - ID: swordImg
     blueprint: {fileID: 2291763347179699088, guid: 2e7c5e8793f4dfc43b1aa090833a44bd,
       type: 3}
-    amt: 20
+    amt: 100
+    allowGrow: 0
+  - ID: swordProj
+    blueprint: {fileID: 2291763347179699088, guid: 2e7c5e8793f4dfc43b1aa090833a44bd,
+      type: 3}
+    amt: 100
     allowGrow: 0
 --- !u!4 &629587099
 Transform:
@@ -819,7 +824,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tgt: {fileID: 246532960}
   os: {x: 0, y: 0, z: -10}
-  l: 0.1
+  l: 0.2
 --- !u!1 &1080645476
 GameObject:
   m_ObjectHideFlags: 0
@@ -1047,7 +1052,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!61 &1233861388
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1256,15 +1261,15 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 100
-  m_LinearDrag: 100
+  m_Mass: 1
+  m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 0
 --- !u!58 &1355988599
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1310,7 +1315,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b98af986d025ac04792fc538a1f82380, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dist: 3
+  dist: 0.75
+  turn: 1000
+  topspeed: 50
+  proj_maxCD: 0.2
+  state_maxCD: 2
+  tgt: {fileID: 246532966}
 --- !u!1 &1435917571
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,7 +19,7 @@ public class AftImgPool : MonoBehaviour{
             Queue<GameObject> poolq = new Queue<GameObject>();
             for(int i = 0; i < cpool.amt; i++)
             {
-                GameObject obj = Instantiate(cpool.blueprint);
+                GameObject obj = Instantiate(cpool.blueprint, transform);
                 obj.SetActive(false);
                 poolq.Enqueue(obj);
             }
@@ -39,9 +39,9 @@ public class AftImgPool : MonoBehaviour{
             return null;
         }
         GameObject obj = poolDict[ID].Dequeue();
-        obj.SetActive(true);
         obj.transform.position = p;
         obj.transform.rotation = q;
+        obj.SetActive(true);
 
         poolDict[ID].Enqueue(obj);
         return obj;
