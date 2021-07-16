@@ -95,9 +95,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   setDamage: 60
   timer: 1.5
-  vel: 50
+  vel: 30
   lockAfter: -1
-  acc: -0.75
+  acc: 0
   lockvel: 0
   isLock: 0
   effect: {fileID: 0}

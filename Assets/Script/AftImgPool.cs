@@ -51,9 +51,33 @@ public class AftImgPool : MonoBehaviour{
         GameObject obj = poolDict[ID].Dequeue();
         obj.transform.position = p;
         obj.transform.rotation = q;
-        obj.SetActive(true);
-
+        obj.SetactivateForAllChildren(true);
         poolDict[ID].Enqueue(obj);
         return obj;
+    }
+    void SetActiveRecur(GameObject obj, bool state)
+    {
+        obj.SetActive(state);
+        foreach (Transform child in obj.transform)
+        {
+            SetActiveRecur(child.gameObject, state);
+        }
+    }
+}
+public static class Extensions
+{
+    public static void SetactivateForAllChildren(this GameObject go, bool state)
+    {
+        DeactivateChildren(go, state);
+    }
+ 
+    public static void DeactivateChildren(GameObject go, bool state)
+    {
+        go.SetActive(state);
+ 
+        foreach (Transform child in go.transform)
+        {
+            DeactivateChildren(child.gameObject, state);
+        }
     }
 }

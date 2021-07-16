@@ -96,8 +96,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   setDamage: 80
   timer: 1.5
-  vel: -60
-  lockAfter: 0.5
+  vel: -80
+  lockAfter: -1
   acc: 4
   lockvel: 10
   isLock: 0

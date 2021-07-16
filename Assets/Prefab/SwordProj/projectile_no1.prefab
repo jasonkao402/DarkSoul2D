@@ -176,7 +176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   setDamage: 60
-  timer: 2.5
+  timer: 2
   vel: -20
   lockAfter: -1
   acc: 2
@@ -195,5 +195,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1705280e5a95c64b9cf6c26aa11e170, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dist: 1
+  dist: 2
   eff_ID: swordImg_2

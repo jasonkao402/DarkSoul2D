@@ -30,23 +30,25 @@ public class bossAI : MonoBehaviour
     int nowState, altstate;
     void Start()
     {
+        pooli = AftImgPool.Instance;
+        rb = GetComponent<Rigidbody2D>();
+
         nowState = 0;
         playertgt = player;
-        //state = AtkPattern.Idle;
-        state_nowCD = state_maxCD;
-        rb = GetComponent<Rigidbody2D>();
-        pooli = AftImgPool.Instance;
+        //state_nowCD = state_maxCD;
+        //proj_nowCD = proj_maxCD;
+        
         SoundManager.instance.PlayBGM(0);
     }
     private void FixedUpdate() {
         
-        state_nowCD -= Time.deltaTime;
-        proj_nowCD -= Time.deltaTime;
-
         if(state_nowCD < 0)
         {
             setState();
         }
+
+        state_nowCD -= Time.deltaTime;
+        proj_nowCD -= Time.deltaTime;
         
         switch (state){
         case AtkPattern.Idle:
@@ -93,7 +95,7 @@ public class bossAI : MonoBehaviour
                 destPos = playertgt.position + qtmp * vtmp;
                 transform.right = destPos - transform.position;
             }
-            transform.position = Vector3.Lerp(transform.position, destPos, 0.2f);
+            transform.position = Vector3.Lerp(transform.position, destPos, 0.25f);
             AfterImage();
             break;
 
@@ -167,7 +169,7 @@ public class bossAI : MonoBehaviour
 
         case AtkPattern.Summon:
             qtmp = Quaternion.Euler(0, 0, 0);
-            vtmp = new Vector3(15, 0, 0);
+            vtmp = new Vector3(20, 0, 0);
             break;
 
         case AtkPattern.QuaDash:
@@ -181,11 +183,10 @@ public class bossAI : MonoBehaviour
             }
             break;
 
-
         case AtkPattern.StarFlash:
             vtmp = new Vector3(24, 0, 0);
-            destPos = playertgt.position + vtmp;
-            qtmp = Quaternion.Euler(0, 0, 0);
+            qtmp = Quaternion.Euler(0, 0, 90);
+            destPos = playertgt.position + qtmp * vtmp;
 
             state_nowCD = state_maxCD * 2;
             break;
