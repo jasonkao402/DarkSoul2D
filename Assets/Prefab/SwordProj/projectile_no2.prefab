@@ -97,7 +97,7 @@ MonoBehaviour:
   timer: 2
   vel: -30
   lockAfter: 0.666
-  acc: 2
+  acc: 1.5
   lockvel: 0
   isLock: 1
   effect: {fileID: 0}

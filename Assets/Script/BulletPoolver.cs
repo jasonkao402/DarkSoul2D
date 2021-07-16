@@ -42,4 +42,12 @@ public class BulletPoolver : MonoBehaviour
         accv = transform.right;
         rb.velocity = accv * lockvel;
     }
+    void OnTriggerEnter2D(Collider2D other){
+		if(other.CompareTag("PlayerType"))
+        {
+            PlayerType hitOther = other.GetComponent<PlayerType>();
+            if(hitOther) hitOther.OnReceiveDmg(setDamage);
+            Debug.Log( $"{gameObject.name} hit {other.name}, {setDamage} dmg");
+		}
+	}
 }

@@ -93,13 +93,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f608a344fbf13b4098b6f999e55da7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  setDamage: 60
+  setDamage: 20
   timer: 1
-  vel: 0
-  lockAfter: 0.5
-  acc: 3
-  lockvel: 0
-  isLock: 1
+  vel: -15
+  lockAfter: 0.25
+  acc: 2
+  lockvel: 15
+  isLock: 0
   effect: {fileID: 0}
 --- !u!1 &7431430767983531080
 GameObject:

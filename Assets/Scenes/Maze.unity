@@ -290,11 +290,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerName: LoliSagiri
-  maxhp: 500
+  maxhp: 1500
   maxsh: 0
   shakemag: 0.001
   dmgtime: 0.2
-  hpbar: {fileID: 498507291}
+  hpbar: {fileID: 1501112254}
   shbar: {fileID: 0}
 --- !u!114 &246532965
 MonoBehaviour:
@@ -310,7 +310,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   accel: 2500
   maxSpeed: 300
-  boost: 50000
+  boost: 75000
   boost_maxCD: 1
   target: {fileID: 246532966}
 --- !u!4 &246532966
@@ -444,8 +444,8 @@ RectTransform:
   m_Father: {fileID: 1319406542}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.65, y: 0.9}
-  m_AnchorMax: {x: 0.95, y: 0.95}
+  m_AnchorMin: {x: 0.64, y: 0.9}
+  m_AnchorMax: {x: 0.96, y: 0.96}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -493,6 +493,8 @@ GameObject:
   m_Component:
   - component: {fileID: 629587099}
   - component: {fileID: 629587098}
+  - component: {fileID: 629587101}
+  - component: {fileID: 629587100}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -516,12 +518,12 @@ MonoBehaviour:
   - ID: swordImg
     blueprint: {fileID: 2291763347179699088, guid: 2e7c5e8793f4dfc43b1aa090833a44bd,
       type: 3}
-    amt: 200
+    amt: 120
     allowGrow: 0
   - ID: swordProj_1
     blueprint: {fileID: 4899434306146198342, guid: d7dbf183af8f125438e6e752ab90290c,
       type: 3}
-    amt: 90
+    amt: 270
     allowGrow: 0
   - ID: swordProj_2
     blueprint: {fileID: 4810695910545669292, guid: f2131f00359cb5f4c987a89b011210a1,
@@ -541,10 +543,15 @@ MonoBehaviour:
   - ID: swordImg_2
     blueprint: {fileID: 8247542183414347246, guid: e7262f7e064360d4aa6c4d24131bcacf,
       type: 3}
-    amt: 120
+    amt: 150
     allowGrow: 0
   - ID: swordProj_4
     blueprint: {fileID: 7431430767870943750, guid: eaaa68ed8be181c4aa4b3efd8cc94cec,
+      type: 3}
+    amt: 180
+    allowGrow: 0
+  - ID: swordProj_5
+    blueprint: {fileID: 3703218422963221934, guid: 61641dd44b7fb6747a024737995b5da5,
       type: 3}
     amt: 360
     allowGrow: 0
@@ -562,6 +569,121 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &629587100
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 629587097}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &629587101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 629587097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 607c27c22b844c5489f2a176569e7cd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lowPitchRange: 0.95
+  highPitchRange: 1.05
+  vo: 30
+  efxSource: {fileID: 629587100}
+  bgmSource: {fileID: 629587100}
+  bgmList:
+  - {fileID: 8300000, guid: 89501aa50b72f1e4a9024c8f4c709318, type: 3}
 --- !u!1 &744700811
 GameObject:
   m_ObjectHideFlags: 0
@@ -805,7 +927,7 @@ Camera:
   far clip plane: 64
   field of view: 60
   orthographic: 1
-  orthographic size: 6
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1089,6 +1211,7 @@ GameObject:
   - component: {fileID: 1355988599}
   - component: {fileID: 1355988598}
   - component: {fileID: 1355988602}
+  - component: {fileID: 1355988601}
   m_Layer: 0
   m_Name: Boss
   m_TagString: PlayerType
@@ -1140,7 +1263,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1355988597}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1150,6 +1273,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1355988601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1355988597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f608a344fbf13b4098b6f999e55da7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  setDamage: 100
+  timer: 999
+  vel: 0
+  lockAfter: -1
+  acc: 0
+  lockvel: 0
+  isLock: 0
+  effect: {fileID: 0}
 --- !u!114 &1355988602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1165,9 +1308,10 @@ MonoBehaviour:
   dist: 0.75
   turn: 1000
   topspeed: 50
-  proj_maxCD: 0.5
-  state_maxCD: 1.5
+  proj_maxCD: 0.333
+  state_maxCD: 1.333
   player: {fileID: 246532966}
+  AtkPatternList: 0300000000000000010000000000000001000000030000000500000006000000090000000800000000000000040000000000000003000000070000000000000002000000000000000a000000
 --- !u!1 &1435917571
 GameObject:
   m_ObjectHideFlags: 0

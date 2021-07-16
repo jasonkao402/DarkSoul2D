@@ -5,7 +5,7 @@ using UnityEngine;
 public class bossAI : MonoBehaviour
 {
     public enum AtkPattern{
-        Missile,
+        Follow,
         TriShot,
         Summon,
         QuaDash,
@@ -15,6 +15,7 @@ public class bossAI : MonoBehaviour
         OrbitCannon,
         TouhouSpin,
         Idle,
+        _Last,
     }
     public float dist, turn, topspeed, proj_maxCD, state_maxCD;
     float proj_nowCD, state_nowCD;
@@ -25,15 +26,17 @@ public class bossAI : MonoBehaviour
     AftImgPool pooli;
     Rigidbody2D rb;
     AtkPattern state;
-    int totstate, altstate;
+    public List<AtkPattern> AtkPatternList;
+    int nowState, altstate;
     void Start()
     {
-        totstate = AtkPattern.GetNames(typeof(AtkPattern)).Length;
+        nowState = 0;
         playertgt = player;
-        state = AtkPattern.Idle;
+        //state = AtkPattern.Idle;
         state_nowCD = state_maxCD;
         rb = GetComponent<Rigidbody2D>();
         pooli = AftImgPool.Instance;
+        SoundManager.instance.PlayBGM(0);
     }
     private void FixedUpdate() {
         
@@ -49,7 +52,7 @@ public class bossAI : MonoBehaviour
         case AtkPattern.Idle:
             break;
             
-        case AtkPattern.Missile:
+        case AtkPattern.Follow:
             MissileLock(playertgt.position);
             rb.AddForce(transform.right * topspeed);
             AfterImage();
@@ -73,7 +76,7 @@ public class bossAI : MonoBehaviour
             if(proj_nowCD < 0)
             {
                 proj_nowCD = proj_maxCD*2;
-                qtmp = Quaternion.Euler(0, 0, 0);
+                qtmp *= Quaternion.Euler(0, 0, 30);
                 for(int i = 0; i < 6; i++)
                 {
                     qtmp *= Quaternion.Euler(0, 0, -60);
@@ -85,11 +88,12 @@ public class bossAI : MonoBehaviour
         case AtkPattern.StarFlash:
             if((transform.position - destPos).sqrMagnitude < 1f)
             {
+                pooli.TakePool("swordProj_1", destPos, qtmp * Quaternion.Euler(0, 0, 180));
                 qtmp *= Quaternion.Euler(0, 0, -144);
                 destPos = playertgt.position + qtmp * vtmp;
                 transform.right = destPos - transform.position;
             }
-            transform.position = Vector3.Lerp(transform.position, destPos, 0.3f);
+            transform.position = Vector3.Lerp(transform.position, destPos, 0.2f);
             AfterImage();
             break;
 
@@ -101,7 +105,7 @@ public class bossAI : MonoBehaviour
                 vtmp += new Vector3(3, 0, 0);
                 destPos = playertgt.position + vtmp;
             }
-            transform.position = Vector3.Lerp(transform.position, destPos, 0.4f);
+            transform.position = Vector3.Lerp(transform.position, destPos, 0.3f);
             break;
 
         case AtkPattern.DiagFall_L:
@@ -112,7 +116,7 @@ public class bossAI : MonoBehaviour
                 vtmp += new Vector3(-3, 0, 0);
                 destPos = playertgt.position + vtmp;
             }
-            transform.position = Vector3.Lerp(transform.position, destPos, 0.4f);
+            transform.position = Vector3.Lerp(transform.position, destPos, 0.3f);
             break;
 
         case AtkPattern.OrbitCannon:
@@ -122,16 +126,16 @@ public class bossAI : MonoBehaviour
                 pooli.TakePool("swordProj_4", transform.position, transform.rotation);
                 pooli.TakePool("hint", transform.position, transform.rotation);
 
-                qtmp *= Quaternion.Euler(0, 0, -8);
+                qtmp *= Quaternion.Euler(0, 0, -12);
                 destPos = playertgt.position + qtmp * vtmp;
             }
-            transform.position = Vector3.Lerp(transform.position, destPos, 0.25f);
+            transform.position = Vector3.Lerp(transform.position, destPos, 0.333f);
             break;
 
         case AtkPattern.TouhouSpin:
             if(proj_nowCD < 0)
             {
-                proj_nowCD = 0.09f;
+                proj_nowCD = 0.08f;
                 altstate += 2;
                 transform.rotation *= Quaternion.Euler(0, 0, altstate);
                 for(int i = 0; i < 3; i++)
@@ -141,15 +145,15 @@ public class bossAI : MonoBehaviour
                 }
             }
             break;
+
         default:
             break;
         }
     }
     void setState(){
-        if(state != AtkPattern.Idle)
-            state++;
-        else
-            state = AtkPattern.Missile;
+        
+        state = AtkPatternList[nowState++];
+        if(nowState == AtkPatternList.Capacity) nowState = 0;
 
         proj_nowCD = 0;
         state_nowCD = state_maxCD;
@@ -157,6 +161,15 @@ public class bossAI : MonoBehaviour
 
         switch (state)
         {
+        case AtkPattern.Idle:
+            state_nowCD = state_maxCD * 0.5f;
+            break;
+
+        case AtkPattern.Summon:
+            qtmp = Quaternion.Euler(0, 0, 0);
+            vtmp = new Vector3(15, 0, 0);
+            break;
+
         case AtkPattern.QuaDash:
             transform.right = playertgt.position - transform.position;
 
@@ -168,14 +181,13 @@ public class bossAI : MonoBehaviour
             }
             break;
 
-        case AtkPattern.Summon:
-            vtmp = new Vector3(12, 0, 0);
-            break;
 
         case AtkPattern.StarFlash:
-            vtmp = new Vector3(20, 0, 0);
+            vtmp = new Vector3(24, 0, 0);
             destPos = playertgt.position + vtmp;
             qtmp = Quaternion.Euler(0, 0, 0);
+
+            state_nowCD = state_maxCD * 2;
             break;
 
         case AtkPattern.DiagFall_R:
@@ -184,7 +196,6 @@ public class bossAI : MonoBehaviour
 
             vtmp = new Vector3(-10, 16, 0);
             destPos = playertgt.position + vtmp;
-            state_nowCD = 1;
             break;
 
         case AtkPattern.DiagFall_L:
@@ -193,7 +204,6 @@ public class bossAI : MonoBehaviour
 
             vtmp = new Vector3(10, 16, 0);
             destPos = playertgt.position + vtmp;
-            state_nowCD = 1;
             break;
 
         case AtkPattern.OrbitCannon:
@@ -203,12 +213,18 @@ public class bossAI : MonoBehaviour
             vtmp = new Vector3(12, 0, 0);
             destPos = playertgt.position + vtmp;
             transform.right = playertgt.position - transform.position;
-            state_nowCD = state_maxCD * 3;
+
+            state_nowCD = state_maxCD * 2;
             break;
 
         case AtkPattern.TouhouSpin:
             altstate = 5;
-            state_nowCD = state_maxCD * 3;
+
+            state_nowCD = state_maxCD * 2;
+            break;
+
+        case AtkPattern._Last:
+            state_nowCD = 0;
             break;
 
         default:

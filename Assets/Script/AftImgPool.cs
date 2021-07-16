@@ -12,8 +12,10 @@ public class AftImgPool : MonoBehaviour{
     public List<Pool> pools;
     public Dictionary<string, Queue<GameObject>> poolDict = new Dictionary<string, Queue<GameObject>>();
     public static AftImgPool Instance{get; private set;}
-    private void Start() {
+    private void Awake() {
         Instance = this;
+    }
+    private void Start() {
         foreach(Pool cpool in pools)
         {
             Queue<GameObject> poolq = new Queue<GameObject>();
