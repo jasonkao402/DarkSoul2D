@@ -13,6 +13,7 @@ public class bossAI : MonoBehaviour
         DiagFall_R,
         DiagFall_L,
         OrbitCannon,
+        TouhouSpin,
         Idle,
     }
     public float dist, turn, topspeed, proj_maxCD, state_maxCD;
@@ -126,6 +127,20 @@ public class bossAI : MonoBehaviour
             }
             transform.position = Vector3.Lerp(transform.position, destPos, 0.25f);
             break;
+
+        case AtkPattern.TouhouSpin:
+            if(proj_nowCD < 0)
+            {
+                proj_nowCD = 0.09f;
+                altstate += 2;
+                transform.rotation *= Quaternion.Euler(0, 0, altstate);
+                for(int i = 0; i < 3; i++)
+                {
+                    pooli.TakePool("swordProj_5", transform.position, transform.rotation * Quaternion.Euler(0, 0, i*120));
+                    pooli.TakePool("hint", transform.position, transform.rotation * Quaternion.Euler(0, 0, i*120));
+                }
+            }
+            break;
         default:
             break;
         }
@@ -190,6 +205,12 @@ public class bossAI : MonoBehaviour
             transform.right = playertgt.position - transform.position;
             state_nowCD = state_maxCD * 3;
             break;
+
+        case AtkPattern.TouhouSpin:
+            altstate = 5;
+            state_nowCD = state_maxCD * 3;
+            break;
+
         default:
             break;
         }
