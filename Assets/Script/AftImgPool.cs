@@ -7,10 +7,10 @@ public class AftImgPool : MonoBehaviour{
         public string ID;
         public GameObject blueprint;
         public int amt;
-        public bool allowGrow;
     }
     public List<Pool> pools;
     public Dictionary<string, Queue<GameObject>> poolDict = new Dictionary<string, Queue<GameObject>>();
+    public Dictionary<string, GameObject> poolobjDict = new Dictionary<string, GameObject>();
     public static AftImgPool Instance{get; private set;}
     private void Reset() {
         foreach(Pool cpool in pools)
@@ -22,7 +22,15 @@ public class AftImgPool : MonoBehaviour{
     private void Awake() {
         Instance = this;
     }
-    
+    private void addintoPool(string ID)
+    {
+        for(int i = 0; i < 30; i++)
+        {
+            GameObject obj = Instantiate(poolobjDict[ID], transform);
+            obj.SetActive(false);
+            poolDict[ID].Enqueue(obj);
+        }
+    }
     private void Start() {
         foreach(Pool cpool in pools)
         {
@@ -34,6 +42,7 @@ public class AftImgPool : MonoBehaviour{
                 poolq.Enqueue(obj);
             }
             poolDict.Add(cpool.ID, poolq);
+            poolobjDict.Add(cpool.ID, cpool.blueprint);
         }
     }
     public GameObject TakePool(string ID, Vector3 p, Quaternion q)
@@ -46,6 +55,7 @@ public class AftImgPool : MonoBehaviour{
         else if(poolDict[ID].Count == 0)
         {
             Debug.LogWarning("ID : " + ID + " not available");
+            addintoPool(ID);
             return null;
         }
         GameObject obj = poolDict[ID].Dequeue();
@@ -54,30 +64,5 @@ public class AftImgPool : MonoBehaviour{
         obj.SetactivateForAllChildren(true);
         poolDict[ID].Enqueue(obj);
         return obj;
-    }
-    void SetActiveRecur(GameObject obj, bool state)
-    {
-        obj.SetActive(state);
-        foreach (Transform child in obj.transform)
-        {
-            SetActiveRecur(child.gameObject, state);
-        }
-    }
-}
-public static class Extensions
-{
-    public static void SetactivateForAllChildren(this GameObject go, bool state)
-    {
-        DeactivateChildren(go, state);
-    }
- 
-    public static void DeactivateChildren(GameObject go, bool state)
-    {
-        go.SetActive(state);
- 
-        foreach (Transform child in go.transform)
-        {
-            DeactivateChildren(child.gameObject, state);
-        }
     }
 }
