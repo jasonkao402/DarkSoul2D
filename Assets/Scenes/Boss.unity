@@ -769,7 +769,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &629587098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -787,42 +787,34 @@ MonoBehaviour:
     blueprint: {fileID: 2291763347179699088, guid: 2e7c5e8793f4dfc43b1aa090833a44bd,
       type: 3}
     amt: 120
-    allowGrow: 0
   - ID: swordProj_1
     blueprint: {fileID: 4899434306146198342, guid: d7dbf183af8f125438e6e752ab90290c,
       type: 3}
     amt: 270
-    allowGrow: 0
   - ID: swordProj_2
     blueprint: {fileID: 195918112776712199, guid: 8832392cfc9feda4baa04d32379a67f6,
       type: 3}
     amt: 60
-    allowGrow: 0
   - ID: swordProj_3
     blueprint: {fileID: 7646891045561681194, guid: 6955f5006dc4c824ead45bc1d0d73f33,
       type: 3}
     amt: 60
-    allowGrow: 0
   - ID: hint
     blueprint: {fileID: 6514986088190840951, guid: d92eeca25f7367d459c4462007148450,
       type: 3}
     amt: 150
-    allowGrow: 0
   - ID: swordImg_2
     blueprint: {fileID: 8247542183414347246, guid: e7262f7e064360d4aa6c4d24131bcacf,
       type: 3}
     amt: 200
-    allowGrow: 0
   - ID: swordProj_4
     blueprint: {fileID: 7431430767870943750, guid: eaaa68ed8be181c4aa4b3efd8cc94cec,
       type: 3}
     amt: 180
-    allowGrow: 0
   - ID: swordProj_5
     blueprint: {fileID: 3703218422963221934, guid: 61641dd44b7fb6747a024737995b5da5,
       type: 3}
     amt: 360
-    allowGrow: 0
 --- !u!4 &629587099
 Transform:
   m_ObjectHideFlags: 0
@@ -1514,7 +1506,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!50 &1355988598
 Rigidbody2D:
   serializedVersion: 4
