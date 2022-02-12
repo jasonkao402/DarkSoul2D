@@ -19,7 +19,7 @@ public class FollowCam : MonoBehaviour
     private void Update() {
         Camera.main.orthographicSize *= (-Input.GetAxisRaw("Mouse ScrollWheel")+1);
         Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize, 5, 50);
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButtonDown(1))
         {
             col = Physics2D.OverlapCircle(Camera.main.ScreenToWorldPoint(Input.mousePosition), 2, 1|1<<8|1<<9|1<<10);
             if(col != null){
@@ -31,7 +31,7 @@ public class FollowCam : MonoBehaviour
                 focus = false;
             }
         }
-        else if(Input.GetMouseButtonDown(1))
+        else if(Input.GetMouseButtonDown(0))
         {
             tgt = FindObjectOfType<driftCtrl>().gameObject;
             focus = true;
