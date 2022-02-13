@@ -4,16 +4,16 @@ using UnityEngine;
 
 public static class Extensions
 {
-    public static void SetactivateForAllChildren(this GameObject go, bool state)
+    public static void SetactivateForAllChildren(this GameObject gg, bool state)
     {
-        setChildActive_recur(go, state);
+        setChildActive_recur(gg, state);
     }
  
-    public static void setChildActive_recur(GameObject go, bool state)
+    public static void setChildActive_recur(GameObject gg, bool state)
     {
-        go.SetActive(state);
+        gg.SetActive(state);
  
-        foreach (Transform child in go.transform)
+        foreach (Transform child in gg.transform)
         {
             setChildActive_recur(child.gameObject, state);
         }
