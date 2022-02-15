@@ -23,9 +23,6 @@ public class driftCtrl : MonoBehaviour
         trails = GetComponentsInChildren<TrailRenderer>();
     }
     private void Update() {
-        transform.position = rb.position;
-        transform.rotation = rb.rotation;
-
         driftAngle = Vector3.Angle(rb.velocity, transform.forward);
         if(Input.GetKey(KeyCode.LeftShift) || driftAngle > driftEnter)
         {
@@ -44,10 +41,14 @@ public class driftCtrl : MonoBehaviour
             }
         }
 
-        if(Input.GetKeyDown(KeyCode.LeftControl))
+        if(nowCharge == vs.chargeBoost[1] && Input.GetKeyDown(KeyCode.LeftControl))
         {
             StartCoroutine(BoostState(boostBar));
         }
+    }
+    private void LateUpdate() {
+        transform.position = rb.position;
+        transform.rotation = rb.rotation;
     }
     void FixedUpdate()
     {
@@ -57,26 +58,23 @@ public class driftCtrl : MonoBehaviour
         rb.AddTorque(new Vector3(0, Input.GetAxis("Horizontal") * vs.steer * Mathf.Clamp01(rb.velocity.magnitude * 0.1f), 0), ForceMode.Impulse);
         if(state == 1)
         {
-            nowCharge += vs.chargeBoost[0];
+            nowCharge = Mathf.Clamp(nowCharge + vs.chargeBoost[0] * Mathf.Abs(rb.angularVelocity.y) * Time.deltaTime, 0, vs.chargeBoost[1]) ;
+            boostBar.localScale = new Vector3(nowCharge/vs.chargeBoost[1], 1, 1);
         }
-        boostBar.localScale = new Vector3(nowCharge/vs.chargeBoost[1], 1, 1);
-        //rb.AddForceAtPosition(transform.right * Input.GetAxis("Horizontal") * vs.steer * Mathf.Clamp(Vector3.Dot(rb.velocity, transform.forward) * 0.1f, -1, 1), transform.position+transform.forward, ForceMode.Impulse);
-        //rb.AddTorque(-Input.GetAxis("Horizontal") * vs.steer * Mathf.Clamp01(rb.velocity.magnitude * 0.1f), ForceMode2D.Impulse);
-        //rb.AddTorque(-Input.GetAxis("Horizontal") * vs.steer * Vector2.Dot(rb.velocity.normalized, transform.up), ForceMode2D.Impulse);
     }
     public IEnumerator BoostState(Transform tgt)
     {
-        vs.accel *= 1.5f;
-        Vector3 tempS = tgt.localScale, tgtscale = new Vector3(0, 1, 1);
-        float n = 0;
-        while(n < vs.chargeBoost[1])
+        float n = vs.chargeBoost[1];
+        vs.accel *= 1.75f;
+        while(n > 0)
         {
-            tgt.localScale = Vector3.Lerp(tempS, tgtscale, n/vs.chargeBoost[1]);
-            n += Time.deltaTime;
+            tgt.localScale = new Vector3(n/vs.chargeBoost[1], 1, 1);
+            n -= Time.deltaTime;
+            nowCharge = 0;
             yield return null;
         }
-        tgt.localScale = tgtscale;
-        vs.accel /= 1.5f;
+        tgt.localScale = new Vector3(0, 1, 1);
+        vs.accel /= 1.75f;
         yield return null;
 	}
 }

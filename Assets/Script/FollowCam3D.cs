@@ -29,6 +29,7 @@ public class FollowCam3D : MonoBehaviour
     private void Update() {
         Camera.main.fieldOfView *= (-Input.GetAxisRaw("Mouse ScrollWheel")+1);
         Camera.main.fieldOfView = Mathf.Clamp(Camera.main.fieldOfView, 10, 60);
+        /*
         if(Input.GetMouseButtonDown(1))
         {
             col = Physics.OverlapSphere(Camera.main.ScreenToWorldPoint(Input.mousePosition), 2, 1|1<<8|1<<9|1<<10)[0];
@@ -41,7 +42,8 @@ public class FollowCam3D : MonoBehaviour
                 focus = false;
             }
         }
-        else if(Input.GetMouseButtonDown(0))
+        */
+        if(Input.GetMouseButtonDown(0))
         {
             tgt = FindObjectOfType<driftCtrl>().gameObject;
             focus = true;
