@@ -12,6 +12,8 @@ public class FollowCam3D : MonoBehaviour
     public float l;
     void FixedUpdate()
     {
+        if(!focus)
+            transform.position += new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"))*panSpeed*Camera.main.fieldOfView;
         if(tgt)
         {
             transform.position = Vector3.Lerp(transform.position, 
@@ -22,17 +24,14 @@ public class FollowCam3D : MonoBehaviour
             , l);
             transform.LookAt(tgt.transform);
         }
-            
-        if(!focus)
-            transform.position += new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"))*panSpeed*Camera.main.fieldOfView;
     }
     private void Update() {
         Camera.main.fieldOfView *= (-Input.GetAxisRaw("Mouse ScrollWheel")+1);
         Camera.main.fieldOfView = Mathf.Clamp(Camera.main.fieldOfView, 10, 60);
         /*
-        if(Input.GetMouseButtonDown(1))
+        if(Input.GetMouseButtonDown(0))
         {
-            col = Physics.OverlapSphere(Camera.main.ScreenToWorldPoint(Input.mousePosition), 2, 1|1<<8|1<<9|1<<10)[0];
+            col = Physics.OverlapSphere(Camera.main.ScreenToWorldPoint(Input.mousePosition), 2, 1<<8)[0];
             if(col != null){
                 tgt = col.gameObject;
                 focus = true;
@@ -43,12 +42,14 @@ public class FollowCam3D : MonoBehaviour
             }
         }
         */
+        
         if(Input.GetMouseButtonDown(0))
         {
-            tgt = FindObjectOfType<driftCtrl>().gameObject;
+            tgt = FindObjectOfType<driftCtrl>().rb.gameObject;
             focus = true;
         }
-        else if(Input.GetKeyDown(KeyCode.Q))
+        
+        if(Input.GetKeyDown(KeyCode.Q))
         {
             Time.timeScale = 0.5f;
         }
