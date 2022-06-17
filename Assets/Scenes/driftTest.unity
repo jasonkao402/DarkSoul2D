@@ -400,6 +400,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 5725238331984322048, guid: bb61b2f821e68364f9dc971ae976e292,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5841181751548550838, guid: bb61b2f821e68364f9dc971ae976e292,
         type: 3}
       propertyPath: m_Layer
@@ -713,17 +718,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 354009444}
-  m_LocalRotation: {x: 0, y: 0, z: -0.5, w: 0.8660254}
+  m_LocalRotation: {x: 0, y: -0, z: 0.689746, w: -0.7240515}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1334240575}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -60}
-  m_AnchorMin: {x: 0.95, y: 0.05}
-  m_AnchorMax: {x: 0.95, y: 0.05}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 272.78}
+  m_AnchorMin: {x: 0.9, y: 0.14}
+  m_AnchorMax: {x: 0.9, y: 0.14}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 150, y: 3}
+  m_SizeDelta: {x: 120, y: 3}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &354009446
 MonoBehaviour:
@@ -994,12 +999,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vs:
-    accel: 1.2
+    accel: 1.25
     steer: 0.55
     driftExit: 40
     driftEnter: 25
     traction: {x: 0.05, y: 0.01}
-    chargeBoost: {x: 0.8, y: 0.3}
+    chargeBoost: {x: 0.8, y: 0.4}
   pointerCoff: 45
   driftAngle: 0
   driftTraction: 0
@@ -1233,7 +1238,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 981060093}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.6, y: 7.6, z: 9.5}
+  m_LocalPosition: {x: 9.6, y: 6.68, z: 9.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1252,7 +1257,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tgt: {fileID: 0}
-  offset: {x: 0, y: 5, z: -7}
+  offset: {x: 0, y: 3.5, z: -7}
   panSpeed: 0
   l: 0.1
 --- !u!45 &981060098
@@ -3233,7 +3238,7 @@ GameObject:
   - component: {fileID: 1721306315}
   - component: {fileID: 1721306314}
   m_Layer: 8
-  m_Name: Particle System
+  m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8124,7 +8129,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-5942
+  m_Name: pb_Mesh16186
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -8293,7 +8298,7 @@ GameObject:
   - component: {fileID: 1947988259}
   - component: {fileID: 1947988258}
   m_Layer: 8
-  m_Name: Particle System (1)
+  m_Name: Burst
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8459,7 +8464,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.15
+      scalar: 0.1
       minScalar: 0.3
       maxCurve:
         serializedVersion: 2
@@ -8628,7 +8633,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 1.5
+      scalar: 1.75
       minScalar: 0.5
       maxCurve:
         serializedVersion: 2

@@ -51,8 +51,8 @@ public class driftCtrl : MonoBehaviour
     private void LateUpdate() {
         transform.position = rb.position;
         transform.rotation = rb.rotation;
-        spdRead = rb.velocity.magnitude + 1 - Mathf.Ceil(Mathf.Log(rb.velocity.magnitude+1, 2));
-        speedometer.localEulerAngles = new Vector3(0, 0, -pointerCoff * spdRead);
+        spdRead = (Mathf.Log(rb.velocity.magnitude+1, 2));
+        speedometer.localEulerAngles = new Vector3(0, 0, 420-Mathf.Clamp(pointerCoff * spdRead, 0 ,300));
     }
     void FixedUpdate()
     {
